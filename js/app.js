@@ -17,6 +17,9 @@ app.filter('momentify', function() {
 });
 
 app.controller("MainController", function($scope, $http) {
+    $scope.getRandomSpan = function() {
+        return Math.floor((Math.random() * 6) + 1);
+    }
     $http({
         method: 'GET',
         headers: {
@@ -26,7 +29,8 @@ app.controller("MainController", function($scope, $http) {
     }).then(function successCallback(response) {
         $scope.meetups = response.data.events;
         $scope.groups = response.data.groups;
-        $scope.imagePath = 'img/.png';
+
+        // $scope.imagePath = 'img/.png';
     }, function errorCallback(response) {
         console.log(response);
     });
